@@ -20,7 +20,7 @@ export default class Main extends Component {
         this.props.history.push(`/box/${response.data._id}`)
     }
 
-    handleInputChange = (e) => {
+    handleInputChange = e => {
         this.setState({ newBox: e.target.value })
     }
 

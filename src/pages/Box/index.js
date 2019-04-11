@@ -36,7 +36,7 @@ export default class Box extends Component {
     handleUpload = (files) => {
         files.forEach(file => {
             const data = new FormData()
-            const box = this.props.match.param.id
+            const box = this.props.match.params.id
 
             data.append('file', file)
 
@@ -53,21 +53,21 @@ export default class Box extends Component {
                 </header>
 
                 <Dropzone onDropAccepted={this.handleUpload}>
-                    {(getRootProps, getInputProps) => (
+                    {({ getRootProps, getInputProps }) => (
                         <div className="upload" { ...getRootProps() }>
                             <input { ...getInputProps() } />
 
                             <p>Arraste arquivos ou clique aqui</p>
                         </div>
                     )}
-                </ Dropzone>    
+                </Dropzone>    
 
                 <ul>
-                    { this.state.box.files && this.state.box.map(file => (
+                    { this.state.box.files && this.state.box.files.map(file => (
                         <li key={file._id}>
                             <a className="fileInfo" href={file.url} target="blank">
                                 <MdInsertDriveFile size={24} color="#A5Cfff" />
-                                <strong>{file.title}}</strong>
+                                <strong>{file.title}</strong>
                             </a>
                             <span>há {distanceInWords(file.createdAt, new Date(), {
                                 locale: pt
